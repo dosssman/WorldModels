@@ -1,0 +1,50 @@
+With conda envirnoment
+
+# System Dependicies installation
+  Centos 7.2
+  sudo yum install cmake swig zlib zlib-devel python-opengl xorg-x11-server-Xvfb
+    xorg-x11-server-Xephyr
+  - Skip virtualenv since using Conda
+
+# Conda dependencies installation
+  - First install compiler dependencies(?)
+    - conda install --yes gcc_linux-64
+    - conda install --yes gxx_linux-64
+
+  Execute following script in bash
+  while read requirement; do conda install --yes $requirement; done < conda-requirements.txt
+
+# Pip dependencies install
+  - pip install -r pip-requirements.txt
+
+# Random Notes
+- Python build failed for Box2D
+  - Installed gcc_linux-64 and gxx_linux-64 before pip install box2d
+  ( Did both out of lazyness to find which one is actually required)
+
+- Python build failed for mpi4py
+  - conda install -c anaconda mpi4py
+  ( Apparently req.txt version non existing in conda rep)
+
+- Python build failed for pybullet
+  - pip install pybullet
+  (May be related to Box2D error, or version error)
+
+# Unrecognized packages from requirements.txt
+  appnope==0.1.0
+  atari-py
+  box2d
+  gym
+  graphviz
+  gast
+  cma
+  jupyter-core
+  jupyter-client
+  ipython-genutils
+  mujoco-py
+  mpi4py
+  prompt-toolkit
+  protobuf
+  pybullet
+  pyglet
+  pyopengl
