@@ -29,3 +29,7 @@ With conda envirnoment
 - Python build failed for pybullet
   - pip install pybullet
   (May be related to Box2D error, or version error)
+
+# Box2D Error when generating rollouts
+  -> pip install box2d-kengz
+  ( Already included in requirements.txt from now on)

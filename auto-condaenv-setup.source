@@ -1,0 +1,38 @@
+#!/bin/bash
+echo "!!! Before running this script, make sure you have Anaconda"
+echo "installed and activate in your environment"
+read -p "Do you want to continue ? [y|n]" -n 1 -r
+echo # Newline
+if [[ ! $REPLY =~ ^[Yy]$ ]]
+then
+  echo "Exiting install script."
+  exit 1
+fi
+
+echo "Still running but now ending"
+
+echo "Creating conda env: world-models"
+conda create -n "world-models" -y python=3.6
+
+echo "Activating conda env \"world-models\""
+conda activate world-models
+
+echo "Installing conda compiler dependencies"
+conda install --yes gcc_linux-64
+conda install --yes gxx_linux-64
+
+echo "Installing Pip only requirements (First pass)"
+pip install -r requirements.txt -y
+
+echo "Installing conda supported requirements (Second pass)"
+while read req; do
+  conda install -y -f $req
+done < requirements.txt
+
+echo "Uninstalling default tensorflow version"
+conda remove -y tensorflow
+
+echo "Overriding with tensorflow-gpu"
+conda install -y -f tensorflow-gpu
+
+echo "All done."

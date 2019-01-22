@@ -55,9 +55,9 @@ def main(args):
 
                 while t < time_steps: #and not done:
                     t = t + 1
-                    
+
                     action = config.generate_data_action(t, action)
-                    
+
                     obs_sequence.append(observation)
                     action_sequence.append(action)
 
@@ -69,7 +69,7 @@ def main(args):
 
                 obs_data.append(obs_sequence)
                 action_data.append(action_sequence)
-                
+
                 print("Batch {} Episode {} finished after {} timesteps".format(batch, i_episode, t+1))
                 print("Current dataset contains {} observations".format(sum(map(len, obs_data))))
 
